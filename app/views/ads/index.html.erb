@@ -1,4 +1,4 @@
-<h1>Listing ads</h1>
+<h1>Jobs</h1>
 
 <table>
   <tr>
@@ -11,7 +11,7 @@
   </tr>
 
   <% @ads.each do |ad| %>
-    <tr>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
       <td><%= link_to ad.title, ad %></td>
       <td><%= link_to ad.company, ad %></td>
       <td><%= link_to ad.user.name, ad %></td>

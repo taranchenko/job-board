@@ -1,26 +1,14 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @ad.title %></h1>
 
-<p>
-  <b>Title:</b>
-  <%= @ad.title %>
-</p>
+<h3><%= @ad.company %></h3>
 
-<p>
-  <b>Company:</b>
-  <%= @ad.company %>
-</p>
+<div id="description">
+  <%= sanitize(@ad.description) %>
+</div>
 
-<p>
-  <b>Description:</b>
-  <%= @ad.description %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @ad.user.name %>
-</p>
+<div id="contact">Contact: <%= @ad.user.name %></div>
 
 <% if belongs_to_current_user?(@ad) %>
   <%= link_to 'Edit', edit_ad_path(@ad) %> |
 <% end %>
-<%= link_to 'Back', ads_path %>
+<%= link_to 'List', ads_path %>

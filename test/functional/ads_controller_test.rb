@@ -73,6 +73,13 @@ class AdsControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
+  test "should not get edit someone else's add'" do
+    sign_in users(:barney)
+    assert_raises(ActiveRecord::RecordNotFound) do
+      get :edit, id: @ad.to_param
+    end
+  end
+
   test "should update ad" do
     put :update, id: @ad.to_param, ad: @update_attributes
     assert_redirected_to ad_path(assigns(:ad))

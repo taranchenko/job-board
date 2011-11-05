@@ -7,18 +7,44 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if user_signed_in? %>
-  <%= current_user.name %>
-  <%= link_to "Sign out", destroy_user_session_path, method: 'DELETE' %>
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %>
-<% end %>
 
-<p class="notice"><%= notice %></p>
+<div id="page"> <!-- start of page container -->
 
-<p class="alert"><%= alert %></p>
+  <div id="header"> <!-- start of header -->
+    <div id="logo"><h1>Job Board</h1></div>
+    <div id="login">
+      <div>
+      <% if user_signed_in? %>
+        <%= current_user.name %>
+        <%= link_to "Sign out", destroy_user_session_path, method: 'DELETE' %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path %>
+      <% end %>
+      </div>
+    </div>
+  </div> <!-- end of header -->
 
-<%= yield %>
+  <div id="middle"> <!-- start of middle container -->
+    <div id="content"> <!-- start of content container -->
+      <% if notice %>
+        <div class="notice"><%= notice %></div>
+      <% end %>
+      <% if notice %>
+        <div class="alert"><%= alert %></div>
+      <% end %>
+
+      <%= yield %>
+
+    </div> <!-- end of content container -->
+  </div> <!-- end of middle container -->
+
+  <div id="footer"> <!-- start of footer -->
+    <div id=links>
+      <a href="#">Privacy Policy</a> | <a href="#">About us</a> | <a href="#">Contact Us</a>
+    </div>
+  </div> <!-- end of footer -->
+
+</div> <!-- end of page container -->
 
 </body>
 </html>
