@@ -70,16 +70,6 @@ body {
   background-color: $content_bg_color;
 }
 
-#content {
-  padding-left: $padding;
-}
-
-#content h1 {
-  padding-top: 18px;
-  padding-bottom: 18px;
-  margin: 0;
-}
-
 #footer {
   color: $footer_fg_color;
   background-color: $footer_bg_color;
@@ -126,8 +116,19 @@ table, td, th {
   font-size: 18px;
 }
 
-#content a {
-  color: $content_fg_color;
+#content {
+  padding-left: $padding;
   font-size: 18px;
+}
+
+#content h1 {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin: 0;
+}
+
+#content a {
+  font-size: 18px;
+  color: $content_fg_color;
   font-decorations: none;
 }

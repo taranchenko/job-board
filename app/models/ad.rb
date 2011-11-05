@@ -3,4 +3,6 @@ class Ad < ActiveRecord::Base
 
   validates_presence_of :title, :company, :description
   validates_associated :user
+
+  self.per_page = 10
 end

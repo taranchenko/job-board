@@ -37,3 +37,4 @@ group :test do
 end
 
 gem 'devise'
+gem 'will_paginate'

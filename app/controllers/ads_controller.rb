@@ -5,7 +5,7 @@ class AdsController < ApplicationController
   # GET /ads
   # GET /ads.json
   def index
-    @ads = Ad.all
+    @ads = Ad.page(params[:page] ? params[:page] : 1)
 
     respond_to do |format|
       format.html # index.html.erb
