@@ -16,11 +16,13 @@ ActiveRecord::Schema.define(:version => 20111105221839) do
   create_table "ads", :force => true do |t|
     t.string   "title"
     t.string   "company"
-    t.string   "description"
+    t.text     "description"
     t.integer  "user_id",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "ads", ["user_id"], :name => "index_ads_on_user_id"
 
   create_table "replies", :force => true do |t|
     t.text     "body"

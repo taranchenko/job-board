@@ -10,12 +10,14 @@ class RepliesControllerTest < ActionController::TestCase
     sign_in @user
     @ad = ads(:one)
     @attributes = {body: "Body"}
+    ActionMailer::Base.deliveries = []
   end
 
   test "should create reply" do
     assert_difference('Reply.count') do
       post :create, ad_id: @ad.to_param, reply: @attributes
     end
+    assert_equal(1, ActionMailer::Base.deliveries.size)
     assert_redirected_to ad_path(@ad)
   end
 
@@ -24,6 +26,7 @@ class RepliesControllerTest < ActionController::TestCase
     assert_no_difference('Reply.count') do
       post :create, ad_id: @ad.to_param, reply: @attributes
     end
+    assert_equal(0, ActionMailer::Base.deliveries.size)
     assert_redirected_to new_user_session_path
   end
 

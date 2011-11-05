@@ -6,6 +6,7 @@ class RepliesController < ApplicationController
     @reply = @ad.replies.new(prepare_attributes(:reply))
     @reply.user = current_user
     if @reply.save
+      Notifier.email_reply(@reply).deliver
       redirect_to @ad, notice: 'Thanks for your reply'
     else
       redirect_to @ad, alert: 'Unable to add reply'
