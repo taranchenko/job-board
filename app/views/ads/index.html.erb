@@ -1,0 +1,38 @@
+<h1>Listing ads</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Company</th>
+    <th>Contact</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @ads.each do |ad| %>
+    <tr>
+      <td><%= link_to ad.title, ad %></td>
+      <td><%= link_to ad.company, ad %></td>
+      <td><%= link_to ad.user.name, ad %></td>
+      <td>
+        <% if belongs_to_current_user?(ad) %>
+          <%= link_to 'Edit', edit_ad_path(ad) %>
+        <% else %>
+          &nbsp;
+        <% end %>
+      </td>
+      <td>
+        <% if belongs_to_current_user?(ad) %>
+          <%= link_to 'Destroy', ad, confirm: 'Are you sure?', method: :delete %>
+        <% else %>
+          &nbsp;
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<%= link_to 'New Ad', new_ad_path %>

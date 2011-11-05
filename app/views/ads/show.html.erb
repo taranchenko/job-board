@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @ad.title %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @ad.company %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @ad.description %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @ad.user.name %>
+</p>
+
+<% if belongs_to_current_user?(@ad) %>
+  <%= link_to 'Edit', edit_ad_path(@ad) %> |
+<% end %>
+<%= link_to 'Back', ads_path %>
