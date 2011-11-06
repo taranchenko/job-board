@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   validates_presence_of :name
 
   has_many :ads
+  has_many :replies
 end

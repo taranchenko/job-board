@@ -9,5 +9,6 @@ class CreateAds < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :ads, :user_id
   end
 end

@@ -16,14 +16,14 @@
       <td><%= link_to ad.company, ad %></td>
       <td><%= link_to ad.user.name, ad %></td>
       <td>
-        <% if belongs_to_current_user?(ad) %>
+        <% if owned_by_current_user?(ad) %>
           <%= link_to 'Edit', edit_ad_path(ad) %>
         <% else %>
           &nbsp;
         <% end %>
       </td>
       <td>
-        <% if belongs_to_current_user?(ad) %>
+        <% if owned_by_current_user?(ad) %>
           <%= link_to 'Destroy', ad, confirm: 'Are you sure?', method: :delete %>
         <% else %>
           &nbsp;

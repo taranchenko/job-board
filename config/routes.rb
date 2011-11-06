@@ -1,5 +1,7 @@
 JobBoard::Application.routes.draw do
-  resources :ads
+  resources :ads do
+    resources :replies
+  end
 
   devise_for :users
 
