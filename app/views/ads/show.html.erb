@@ -14,30 +14,12 @@
 <%= link_to 'List', ads_path %>
 
 <% unless owned_by_current_user?(@ad) %>
-<div id="reply">
-<%= form_for([@ad, @ad.replies.new]) do |f| %>
-  <div class="field">
-    <%= f.label :body, 'Reply' %><br />
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Submit' %>
-  </div>
-<% end %>
-</div>
+  <%= render partial: "reply_form", locals: {ad: @ad} %>
 <% end %>
 
 <% if owned_by_current_user?(@ad) and !@ad.replies.empty? %>
   <h2>Replies</h2>
-  <% @ad.replies.each do |reply| %>
-    <%if reply && reply.user %>
-    <div class="reply_contact">
-      <%= mail_to reply.user.email, reply.user.name %>
-      <%= link_to 'Destroy', [@ad, reply], confirm: 'Are you sure?', method: :delete %>
-    </div>
-    <div class="reply_body">
-      <%= sanitize(reply.body) %>
-    </div>
-    <% end %>
-  <% end %>
+  <% replies = @ad.replies.paginate(per_page: 10, page: (params[:page] ? params[:page] : 1)) %>
+  <%= render partial: "reply", collection: replies, locals: {ad: @ad} %>
+  <%= will_paginate replies %>
 <% end %>

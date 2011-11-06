@@ -1,0 +1,46 @@
+.pagination
+  background: #F1F2D8
+  cursor: default
+  a, span, em
+    padding: 0.2em 0.5em
+    display: block
+    float: left
+    margin-right: 1px
+  .disabled
+    color: #999999
+    border: 1px solid #dddddd
+  .current
+    font-style: normal
+    font-weight: bold
+    background: #425955
+    color: #F1F2D8
+    border: 1px solid #425955
+  a
+    text-decoration: none
+    color: #105cb6
+    border: 1px solid #425955
+    &:hover, &:focus
+      color: #1B1D26
+      border-color: #1B1D26
+  .page_info
+    background: #425955
+    color: white
+    padding: 0.4em 0.6em
+    width: 22em
+    margin-bottom: 0.3em
+    text-align: center
+    b
+      color: #1B1D26
+      background: #425955 + 60
+      padding: 0.1em 0.25em
+  /* self-clearing method:
+  &:after
+    content: "."
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+  * html &
+    height: 1%
+  *:first-child+html &
+    overflow: hidden

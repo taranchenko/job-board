@@ -1,0 +1,11 @@
+<% if reply && reply.user %>
+  <div>
+    <div class="reply_contact">
+      <%= mail_to reply.user.email, reply.user.name %>
+      <%= link_to 'Destroy', [ad, reply], confirm: 'Are you sure?', method: :delete %>
+    </div>
+    <div class="reply_body">
+      <%= sanitize(reply.body) %>
+    </div>
+  </div>
+<% end %>
