@@ -5,5 +5,5 @@ class Ad < ActiveRecord::Base
   validates_presence_of :title, :company, :description
   validates_associated :user
 
-  self.per_page = 10
+  self.per_page = 25
 end

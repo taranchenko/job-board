@@ -1,40 +1,44 @@
 <h1>Jobs</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Company</th>
-    <th>Contact</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  <% @ads.each do |ad| %>
-    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td><%= link_to ad.title, ad %></td>
-      <td><%= link_to ad.company, ad %></td>
-      <td><%= link_to ad.user.name, ad %></td>
-      <td>
-        <% if owned_by_current_user?(ad) %>
-          <%= link_to 'Edit', edit_ad_path(ad) %>
-        <% else %>
-          &nbsp;
-        <% end %>
-      </td>
-      <td>
-        <% if owned_by_current_user?(ad) %>
-          <%= link_to 'Destroy', ad, confirm: 'Are you sure?', method: :delete %>
-        <% else %>
-          &nbsp;
-        <% end %>
-      </td>
+<% if @ads.size > 0 %>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Company</th>
+      <th>Contact</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
-  <% end %>
-</table>
 
-<%= will_paginate @ads %>
+    <% @ads.each do |ad| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td><%= link_to ad.created_at.strftime('%m/%d/%Y'), ad %></td>
+        <td><%= link_to ad.title, ad %></td>
+        <td><%= link_to ad.company, ad %></td>
+        <td><%= link_to ad.user.name, ad %></td>
+        <td>
+          <% if owned_by_current_user?(ad) %>
+            <%= link_to 'Edit', edit_ad_path(ad) %>
+          <% else %>
+            &nbsp;
+          <% end %>
+        </td>
+        <td>
+          <% if owned_by_current_user?(ad) %>
+            <%= link_to 'Destroy', ad, confirm: 'Are you sure?', method: :delete %>
+          <% else %>
+            &nbsp;
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 
-<br/>
+  <%= will_paginate @ads %>
+
+  <br/>
+<% end %>
 
 <%= link_to 'New Ad', new_ad_path %>

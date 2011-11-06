@@ -19,7 +19,7 @@
 
 <% if owned_by_current_user?(@ad) and !@ad.replies.empty? %>
   <h2>Replies</h2>
-  <% replies = @ad.replies.paginate(per_page: 10, page: (params[:page] ? params[:page] : 1)) %>
+  <% replies = @ad.replies.order('created_at DESC').paginate(per_page: 10, page: (params[:page] ? params[:page] : 1)) %>
   <%= render partial: "reply", collection: replies, locals: {ad: @ad} %>
   <%= will_paginate replies %>
 <% end %>

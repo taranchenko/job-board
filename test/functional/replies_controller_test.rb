@@ -44,9 +44,8 @@ class RepliesControllerTest < ActionController::TestCase
 
   test "should not destroy someone else's reply" do
     sign_in users(:barney)
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete :destroy, id: @ad.to_param, ad_id: @ad.to_param
-    end
+    delete :destroy, id: @ad.to_param, ad_id: @ad.to_param
+    assert_redirected_to ads_url
   end
 
 end

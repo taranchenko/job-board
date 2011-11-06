@@ -1,6 +1,7 @@
 <% if reply && reply.user %>
   <div>
     <div class="reply_contact">
+      <%= reply.created_at.strftime('%m/%d/%Y') %>
       <%= mail_to reply.user.email, reply.user.name %>
       <%= link_to 'Destroy', [ad, reply], confirm: 'Are you sure?', method: :delete %>
     </div>

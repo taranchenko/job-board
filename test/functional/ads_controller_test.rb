@@ -75,9 +75,8 @@ class AdsControllerTest < ActionController::TestCase
 
   test "should not get edit someone else's add'" do
     sign_in users(:barney)
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get :edit, id: @ad.to_param
-    end
+    get :edit, id: @ad.to_param
+    assert_redirected_to ads_path
   end
 
   test "should update ad" do
@@ -93,9 +92,8 @@ class AdsControllerTest < ActionController::TestCase
 
   test "should not update someone else's ad" do
     sign_in users(:barney)
-    assert_raises(ActiveRecord::RecordNotFound) do
-      put :update, id: @ad.to_param, ad: @update_attributes
-    end
+    put :update, id: @ad.to_param, ad: @update_attributes
+    assert_redirected_to ads_path
   end
 
   test "should destroy ad" do
@@ -115,9 +113,8 @@ class AdsControllerTest < ActionController::TestCase
 
   test "should not destroy someone else's ad" do
     sign_in users(:barney)
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete :destroy, id: @ad.to_param
-    end
+    delete :destroy, id: @ad.to_param
+    assert_redirected_to ads_path
   end
 
 end
